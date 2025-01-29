@@ -16,7 +16,7 @@ test('Successful Login', async ({ page }) => {
     await expect(page.locator('[data-test="shopping-cart-link"]')).toBeVisible();
 })
 
-test('Successful Login', async ({ page, browserName }) => {
+test('Successful Login-1', async ({ page, browserName }) => {
 
     test.slow(browserName === 'chromium');    //--can be used in this way
     await page.goto('https://www.saucedemo.com/');
