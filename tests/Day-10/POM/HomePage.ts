@@ -8,14 +8,16 @@ export class HomePage {
     readonly addToCart: Locator;
     readonly remove: Locator;
     readonly shoppingcart: Locator
+    readonly cart: Locator
 
 
     constructor(page: Page) {
         this.page = page;
         this.homePageTitle = page.locator("data-test=title");
-        this.addToCart = page.getByRole('button', { name: "Add to cart" });
+        this.addToCart = page.locator("[data-test=add-to-cart-sauce-labs-backpack]");
         this.remove = page.locator("data-test=remove-sauce-labs-backpack");
         this.shoppingcart = page.locator("data-test=shopping-cart-link");
+        this.cart = page.locator("data-test=shopping-cart-badge");
 
     }
 
@@ -27,12 +29,17 @@ export class HomePage {
 
     async addingProducttoCart() {
 
-        await this.addToCart.click();
+        await this.addToCart.first().click();
     }
 
     async assertRemoveButton() {
 
         await expect(this.remove).toHaveText("Remove");
+    }
+    async assertaddToCartButton() {
+
+        
+        await expect(this.cart).toHaveText("1");
     }
 
     async clickOnshoppingCartButton() {
