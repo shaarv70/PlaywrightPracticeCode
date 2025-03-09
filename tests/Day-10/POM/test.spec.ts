@@ -9,7 +9,7 @@ test('Verification of cart', async ({ page }) => {
 
     const login = new LoginPage(page);
     await login.openApplication();
-    await login.loginApplication("standard_user", "secret_sauce");
+    await login.loginApplication("standard_use", "secret_sauce");
     const homePage = new HomePage(page);
     await expect(homePage.homePageTitle).toHaveText("Products");
     await homePage.addingProducttoCart();

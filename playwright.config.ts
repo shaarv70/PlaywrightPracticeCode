@@ -47,7 +47,7 @@ export default defineConfig({
     // baseURL: 'http://127.0.0.1:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: 'retain-on-failure',
     testIdAttribute: "data-test",
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
@@ -125,6 +125,9 @@ Ex: npx playwright test --project=iphone 15pro
 6) npx playwright show-report : to see report
 7) npx playwright show-report customFoldername: if the report is stored in some other folder and not in default folder
 Ex: npx playwright show-report retryfolder
-
-
+8) npx playwright test --debug: will start debug mode for all tests in playwright inspector
+9) npx playwright test KickStart.spec.ts:4(line number from where debug starts) --debug :will start debug mode for all tests in playwright inspector frok mentioned line
+10) npx playwright test --debug --project=chromium : will start debug mode for all tests in playwright inspector in chromium project
+11)npx playwright codegen :to record a test 
+12) npx playwright show-trace path to the zip
 */
