@@ -1,0 +1,34 @@
+[
+    {
+
+        "username":"Admin",
+        "password":"admin123",
+        "fname":"Manoj",
+        "lastname":"Raku",
+        "email":"Manoj@gmail.com",
+        "telephone":"12344"
+    },
+    {
+
+        "username":"Admin",
+        "password":"admin123",
+        "fname":"Sonu",
+        "lastname":"Shaw",
+        "email":"Sonu@gmail.com",
+        "telephone":"123455"
+    },
+    {
+
+        "username":"Admin",
+        "password":"admin123",
+        "fname":"Komal",
+        "lastname":"Preet",
+        "email":"Komal@gmail.com",
+        "telephone":"1468654"
+    }
+
+
+
+
+
+]

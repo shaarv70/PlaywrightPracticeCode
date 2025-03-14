@@ -62,29 +62,30 @@ export default defineConfig({
   /* we can add projects over here by our own choice, here name can be set anything and whatever project we add over here it will be visible 
    on the testing screen alogwith other browsers or devices. */
   projects: [
-    {
-      name:'setup',
-     // testMatch:'global.setup.ts'
-      testMatch:/.*\.setup\.ts/ //-- regular expression
+    // {
+    //   name:'setup',
+    //  // testMatch:'global.setup.ts'
+    //   testMatch:/.*\.setup\.ts/ //-- regular expression
     
-    },
+    // },
     {
       name: 'chromium', //project name
-      dependencies:['setup'], //--first it will execute the project having name as setup
+      // dependencies:['setup'], //--first it will execute the project having name as setup
       use: {
         ...devices['Desktop Chrome'],
-        storageState:'./auth/auth.json' //-- this is another way for saving authentication state with project specfic
+      //  storageState:'./auth/auth.json' //-- this is another way for saving authentication state with project specfic
         //headless:false  -- we can also use this in project specific  
       }, // this use is specefic related to project settigs
     },
 
     {
       name: 'firefox',
-      dependencies:['setup'],
+      // dependencies:['setup'],
       use: { ...devices['Desktop Firefox'], 
-        storageState:'./auth/auth.json' },
+      //  storageState:'./auth/auth.json' },
       
     },
+  }
 
     /*  {
        name: 'webkit',
