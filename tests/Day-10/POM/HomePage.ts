@@ -39,7 +39,7 @@ export class HomePage {
     async assertaddToCartButton() {
 
         
-        await expect(this.cart).toHaveText("1");
+        await expect(this.cart).toHaveText("2");
     }
 
     async clickOnshoppingCartButton() {

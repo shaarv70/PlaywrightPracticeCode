@@ -130,4 +130,5 @@ Ex: npx playwright show-report retryfolder
 10) npx playwright test --debug --project=chromium : will start debug mode for all tests in playwright inspector in chromium project
 11)npx playwright codegen :to record a test 
 12) npx playwright show-trace path to the zip
+13) npm playwright test --trace=on : if the trace is not on in config.ts then we can mention in the CLI
 */
