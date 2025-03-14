@@ -12,6 +12,7 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  //globalSetup:'./tests/Day-12/global-setup.ts',
   testDir: './tests',    // so here whichever location is provided tests will be run from that directory only 
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -52,7 +53,8 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
 
-    headless: false  //  by default this is true
+    headless: false,  //  by default this is true,
+    //storageState:'./auth/auth.json'   
   },
 
   /* Configure projects for major browsers */
@@ -61,16 +63,27 @@ export default defineConfig({
    on the testing screen alogwith other browsers or devices. */
   projects: [
     {
+      name:'setup',
+     // testMatch:'global.setup.ts'
+      testMatch:/.*\.setup\.ts/ //-- regular expression
+    
+    },
+    {
       name: 'chromium', //project name
+      dependencies:['setup'], //--first it will execute the project having name as setup
       use: {
         ...devices['Desktop Chrome'],
+        storageState:'./auth/auth.json' //-- this is another way for saving authentication state with project specfic
         //headless:false  -- we can also use this in project specific  
-      },   // this use is specefic related to project settigs
+      }, // this use is specefic related to project settigs
     },
 
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      dependencies:['setup'],
+      use: { ...devices['Desktop Firefox'], 
+        storageState:'./auth/auth.json' },
+      
     },
 
     /*  {
@@ -131,4 +144,13 @@ Ex: npx playwright show-report retryfolder
 11)npx playwright codegen :to record a test 
 12) npx playwright show-trace path to the zip
 13) npm playwright test --trace=on : if the trace is not on in config.ts then we can mention in the CLI
+13)npx playwright test --ui :to run the test in  ui mode  
+note : watch mode in ui screen is for whenever we are doing changes in source code for whichever test is using
+that tests under watch then it will automatically run those tests 
+14) npx playwright codegen --save-storage=filename.json : this command will open the codegen screen and then we can 
+perform login and that login authentication state will save in this json file which we have provided in root directory
+Now if we want to record the test again we dont have to login again in the application and just use tis command 
+npx playwright codegen --load-storage=auth.json linkof the application
+15)Second way of genegerating this authentication file is to use globalsetup file  
+
 */
