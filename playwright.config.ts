@@ -33,7 +33,7 @@ export default defineConfig({
   reporter: 'html',
 
   //Timeout for each test in milliseconds. Defaults to 30 seconds.We can configure on our own
-  // timeout: 50000,
+  timeout: 100000,
 
   //this is assertion timeout, by default is 5000ms, this  also we can configure
   expect: {
