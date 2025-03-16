@@ -11,8 +11,8 @@ await element.press("a+A+B+C");
 await element.press("Control+a+x");
 const username=await page.locator("[name='username']");
 await username.press("Control+v");
-await username.press("ArrowLeft+ArrowLeft+ArrowLeft+c");
-await page.keyboard.press("PageDown");
+await username.press("ArrowLeft+ArrowLeft+ArrowLeft+c");// this will perform keyboard action on particular element
+await page.keyboard.press("PageDown");// this will perform only the keyboard action 
 await page.keyboard.press("PageUp");
 
 
