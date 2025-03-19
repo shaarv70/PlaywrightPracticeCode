@@ -37,10 +37,14 @@ export default defineConfig({
 
   //this is assertion timeout, by default is 5000ms, this  also we can configure
   expect: {
-    timeout: 11000
-
+    timeout: 11000,
+    // toHaveScreenshot:{
+    //   maxDiffPixels:20,
+    //   maxDiffPixelRatio:0.1   -- these are snapshpts properties
+    //}
   },
-
+  //grep:[/UI/,/API/] //: wille execute all those tests which are having UI & API tag
+ // grepInvert:/Sanity/,: will skip those tests which are having sanity tag
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -153,5 +157,16 @@ perform login and that login authentication state will save in this json file wh
 Now if we want to record the test again we dont have to login again in the application and just use tis command 
 npx playwright codegen --load-storage=auth.json linkof the application
 15)Second way of genegerating this authentication file is to use globalsetup file  
-
+16) npx playwright test --grep=@tag : to run test having particular tag
+17) npx playwright test --grep-invert=@tag: to skip the test having certain tag
+Run test in either tag (Logical OR operator)
+Powershell:
+18)npx playwright test --grep --% "@tag1|@tag2"
+Batch command:
+19)npx playwright test --grep "@tag1|@tag2"
+Bash:
+20)npx playwright test --grep "@tag1|@tag2|@tag3"
+Run test containing both tags (Logical and AND)
+npx playwright test --grip "(?=.*@UI)(?=.*@Smoke)"
+21) npx playwright test --update-snapshots : to update all the snapshots(comparing waale) with the latest snapshots 
 */

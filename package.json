@@ -2,6 +2,7 @@
   "name": "playwright",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {},
   "keywords": [],
   "author": "",
@@ -12,6 +13,7 @@
     "@types/node": "^22.10.6"
   },
   "dependencies": {
-    "csv-parse": "^5.6.0"
+    "csv-parse": "^5.6.0",
+    "dotenv": "^16.4.7"
   }
 }

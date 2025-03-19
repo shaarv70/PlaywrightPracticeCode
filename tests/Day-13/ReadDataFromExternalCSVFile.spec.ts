@@ -1,5 +1,5 @@
 import {test} from '@playwright/test';
-import fs from 'fs';  //built in library for filesystem which provides functions to interact with the files
+import * as fs from 'fs';  //built in library for filesystem which provides functions to interact with the files
 import {parse} from 'csv-parse/sync';
 
 const records= parse(fs.readFileSync("testData/testData.csv"),{//read the data from csv file and convert into object or array of objects
