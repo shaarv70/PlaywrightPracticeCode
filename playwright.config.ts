@@ -32,6 +32,8 @@ export default defineConfig({
   workers: process.env.CI ? 1 : 2,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   //reporter: [['html', { open: 'always', outputfolder: './retryfolder' }]],    //here we will be sending the tuple
+  //reporter:process.env.CI?"github":'list', // here we can use inbuilt github actions reporter
+  //reporter:[['dot'],['line'],['html',{open:'on-failure'}]], // multiple reporter
   reporter: 'html',
 
   //Timeout for each test in milliseconds. Defaults to 30 seconds.We can configure on our own
@@ -52,7 +54,7 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
-
+    
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'retain-on-failure',
     testIdAttribute: "data-test",
