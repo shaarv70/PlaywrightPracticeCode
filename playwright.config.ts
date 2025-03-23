@@ -1,5 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 import * as dotenv from 'dotenv';
+import { OrtoniReportConfig } from 'ortoni-report';
+import path from 'path';
 
 /**
  * Read environment variables from file.
@@ -9,6 +11,32 @@ import * as dotenv from 'dotenv';
  dotenv.config({ 
   path:process.env.TEST_ENV?`./env-files/.env.${process.env.TEST_ENV}`:`./env-files/.env.dev`
 });
+dotenv.config({
+
+  path:path.resolve("tests/Day-15",".env.CRED"),
+})
+
+const reportConfig: OrtoniReportConfig = {
+  open: process.env.CI ? "never" : "always", // default to never
+  folderPath: "report-db",
+  filename: "index.html",
+  title: "Playwright Practice",
+  showProject: !true,
+  projectName: "Playwright",
+  testType: "e2e",
+  authorName: "Arvind Sharma",
+  base64Image: false,
+  stdIO: false,
+  preferredTheme: "dark",
+  meta: {
+    project: "Playwright",
+    version: "3.0.0",
+    description: "Playwright test report",
+    testCycle: "1",
+    release: "1.0.0",
+    platform: "Windows",
+  },
+};
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -34,7 +62,7 @@ export default defineConfig({
   //reporter: [['html', { open: 'always', outputfolder: './retryfolder' }]],    //here we will be sending the tuple
   //reporter:process.env.CI?"github":'list', // here we can use inbuilt github actions reporter
   //reporter:[['dot'],['line'],['html',{open:'on-failure'}]], // multiple reporter
-  reporter: 'html',
+  reporter: [['html'],["ortoni-report", reportConfig]],
 
   //Timeout for each test in milliseconds. Defaults to 30 seconds.We can configure on our own
   timeout: 100000,
