@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 # Set the default test to run if no parameter is passed
 TEST_SCRIPT=${1:-"test"}  # Default to "test" if no argument is given
