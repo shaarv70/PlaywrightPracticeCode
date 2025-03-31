@@ -8,7 +8,7 @@ pipeline {
     }
 
     parameters {
-        choice(name: 'SERVICE', choices: ['RegressionChrome', 'SmokeChrome', 'RegressionFirefox', 'Smokefirefox'], description: 'Select the service to run')
+        choice(name: 'SERVICE', choices: ['RegressionChrome', 'SmokeChrome', 'RegressionFirefox', 'SmokeFirefox'], description: 'Select the service to run')
     }
 
     stages {
