@@ -7,6 +7,7 @@ WORKDIR /app
 # Copy package.json and install dependencies
 COPY package.json package-lock.json ./
 RUN npm install
+RUN apt-get update && apt-get install -y dos2unix
 ADD runner.sh runner.sh
 
 # Copy the test files
