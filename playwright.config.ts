@@ -8,12 +8,12 @@ import path from 'path';
  * https://github.com/motdotla/dotenv
  */
 
- dotenv.config({ 
-  path:process.env.TEST_ENV?`./env-files/.env.${process.env.TEST_ENV}`:`./env-files/.env.dev`
+dotenv.config({
+  path: process.env.TEST_ENV ? `./env-files/.env.${process.env.TEST_ENV}` : `./env-files/.env.dev`
 });
 dotenv.config({
 
-  path:path.resolve("tests/Day-15",".env.CRED"),
+  path: path.resolve("tests/Day-15", ".env.CRED"),
 })
 
 const reportConfig: OrtoniReportConfig = {
@@ -62,10 +62,10 @@ export default defineConfig({
   //reporter: [['html', { open: 'always', outputfolder: './retryfolder' }]],    //here we will be sending the tuple
   //reporter:process.env.CI?"github":'list', // here we can use inbuilt github actions reporter
   //reporter:[['dot'],['line'],['html',{open:'on-failure'}]], // multiple reporter
-  reporter: [['line'],['html',{open:"never"}],["ortoni-report", reportConfig]],
+  reporter: [['line'], ['html', { open: "never" }], ["ortoni-report", reportConfig]],
 
   //Timeout for each test in milliseconds. Defaults to 30 seconds.We can configure on our own
-  timeout: 30,
+  timeout: 1000,
 
   //this is assertion timeout, by default is 5000ms, this  also we can configure
   expect: {
@@ -76,13 +76,13 @@ export default defineConfig({
     //}
   },
   //grep:[/UI/,/API/] //: wille execute all those tests which are having UI & API tag
- // grepInvert:/Sanity/,: will skip those tests which are having sanity tag
+  // grepInvert:/Sanity/,: will skip those tests which are having sanity tag
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
-    
+
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'retain-on-failure',
     testIdAttribute: "data-test",
@@ -102,14 +102,14 @@ export default defineConfig({
     //   name:'setup',
     //  // testMatch:'global.setup.ts'
     //   testMatch:/.*\.setup\.ts/ //-- regular expression
-    
+
     // },
     {
       name: 'chromium', //project name
       // dependencies:['setup'], //--first it will execute the project having name as setup
       use: {
         ...devices['Desktop Chrome'],
-      //  storageState:'./auth/auth.json' //-- this is another way for saving authentication state with project specfic
+        //  storageState:'./auth/auth.json' //-- this is another way for saving authentication state with project specfic
         //headless:false  -- we can also use this in project specific  
       }, // this use is specefic related to project settigs
     },
@@ -117,11 +117,12 @@ export default defineConfig({
     {
       name: 'firefox',
       // dependencies:['setup'],
-      use: { ...devices['Desktop Firefox'], 
-      //  storageState:'./auth/auth.json' },
-      
-    },
-  }
+      use: {
+        ...devices['Desktop Firefox'],
+        //  storageState:'./auth/auth.json' },
+
+      },
+    }
 
     /*  {
        name: 'webkit',

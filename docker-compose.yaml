@@ -3,35 +3,35 @@ version: '3.8'
 services:
   RegressionChrome:
     image: shaarv70/playwright
-    command: ["test:RegressionChrome"]
-    ports:
-      - "8080:8080"
+    command: [ "test:RegressionChrome" ]
+    deploy:
+      replicas: 0
     volumes:
       - ./playwright-report:/app/playwright-report
       - ./test-results:/app/test-results
 
   SmokeChrome:
     image: shaarv70/playwright
-    command: ["test:SmokeChrome"]
-    ports:
-      - "8081:8080"
+    command: [ "test:SmokeChrome" ]
+    deploy:
+      replicas: 0
     volumes:
       - ./playwright-report:/app/playwright-report
       - ./test-results:/app/test-results
 
   RegressionFirefox:
     image: shaarv70/playwright
-    command: ["test:RegressionFirefox"]
-    ports:
-      - "8082:8080"
+    command: [ "test:RegressionFirefox" ]
+    deploy:
+      replicas: 0
     volumes:
       - ./playwright-report:/app/playwright-report
       - ./test-results:/app/test-results
   SmokeFirefox:
     image: shaarv70/playwright
-    command: ["test:SmokeFirefox"]
-    ports:
-      - "8082:8080"
+    command: [ "test:SmokeFirefox" ]
+    deploy:
+      replicas: 0
     volumes:
       - ./playwright-report:/app/playwright-report
       - ./test-results:/app/test-results
