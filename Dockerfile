@@ -16,4 +16,4 @@ COPY . .
 RUN chmod +x runner.sh
 
 # Set entrypoint
-ENTRYPOINT ["./runner.sh"]
+ENTRYPOINT ["/app/runner.sh"]
