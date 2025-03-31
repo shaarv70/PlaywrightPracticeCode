@@ -17,9 +17,9 @@ dotenv.config({
 })
 
 const reportConfig: OrtoniReportConfig = {
-  open: process.env.CI ? "never" : "always", // default to never
-  folderPath: "report-db",
-  filename: "index.html",
+  open: process.env.CI ? "never" : "never", // default to never
+  folderPath: "playwright-report",
+  filename: "report.html",
   title: "Playwright Practice",
   showProject: !true,
   projectName: "Playwright",
@@ -45,7 +45,7 @@ export default defineConfig({
   //globalSetup:'./tests/Day-12/global-setup.ts',
   testDir: './tests',    // so here whichever location is provided tests will be run from that directory only 
   /* Run tests in files in parallel */
-  fullyParallel: true,
+  fullyParallel: !true,
   /* Fail the build on CI if you accidentally left test.only in the source code which means obviously we dont want only single test to be 
   executed by CI.If we directly using true false as values for below key then for true it will throw error whether runnig locally or from CI
   but we are writing values in terms of CI, since we are not using pipeline so  "!process.env.CI" line will give as true and again we have 
@@ -54,7 +54,7 @@ export default defineConfig({
   /* Retry on CI only, since we are using in way of ternary operator like if we have pipeline then retry the failed test as 2 times if we 
   dont have the ppiepline whch means the test  arerunning locally then do not retry, although we can change the retry coount for locally also
   and also like this "retries: 2"*/
-  retries: process.env.CI ? 2 : 1,
+  retries: process.env.CI ? 1 : 1,
   /* Opt out of parallel tests on CI. 
   So workers are basically used for executing the test, if we want to run the test parallely then we can use the as many workers we want */
   workers: process.env.CI ? 1 : 2,
@@ -62,14 +62,14 @@ export default defineConfig({
   //reporter: [['html', { open: 'always', outputfolder: './retryfolder' }]],    //here we will be sending the tuple
   //reporter:process.env.CI?"github":'list', // here we can use inbuilt github actions reporter
   //reporter:[['dot'],['line'],['html',{open:'on-failure'}]], // multiple reporter
-  reporter: [['html'],["ortoni-report", reportConfig]],
+  reporter: [['line'],['html',{open:"never"}],["ortoni-report", reportConfig]],
 
   //Timeout for each test in milliseconds. Defaults to 30 seconds.We can configure on our own
-  timeout: 100000,
+  timeout: 30,
 
   //this is assertion timeout, by default is 5000ms, this  also we can configure
   expect: {
-    timeout: 11000,
+    timeout: 400,
     // toHaveScreenshot:{
     //   maxDiffPixels:20,
     //   maxDiffPixelRatio:0.1   -- these are snapshpts properties
@@ -89,7 +89,7 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
 
-    headless: false,  //  by default this is true,
+    headless: true,  //  by default this is true,
     //storageState:'./auth/auth.json'   
   },
 
@@ -180,7 +180,7 @@ Ex: npx playwright show-report retryfolder
 10) npx playwright test --debug --project=chromium : will start debug mode for all tests in playwright inspector in chromium project
 11)npx playwright codegen :to record a test 
 12) npx playwright show-trace path to the zip
-13) npm playwright test --trace=on : if the trace is not on in config.ts then we can mention in the CLI
+13) npx playwright test --trace=on : if the trace is not on in config.ts then we can mention in the CLI
 13)npx playwright test --ui :to run the test in  ui mode  
 note : watch mode in ui screen is for whenever we are doing changes in source code for whichever test is using
 that tests under watch then it will automatically run those tests 

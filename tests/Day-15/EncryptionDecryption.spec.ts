@@ -1,5 +1,4 @@
-import { test,expect } from "@playwright/test";
-import CryptoJS from "crypto-js";
+import { expect, test } from "@playwright/test";
 import { decryptData, encryptData } from "./EncryptionDecryptionUtility.spec";
 
 /*for encryption & decryption we have to first encrypt the credentials then use that encrypted credentials for decrypption then use
@@ -15,16 +14,16 @@ Or we can put encrypted values in environment file or json file
 
 
 
-test('Successful Login', async ({ page }) => {
+test('Successful Login', { tag: "@Regression" }, async ({ page }) => {
 
 
-     const encryptedUsername:string=encryptData('standard_user');
-     console.log(encryptedUsername);
-     
-     const encryptedPassword: string =encryptData('secret_sauce');
+    const encryptedUsername: string = encryptData('standard_user');
+    console.log(encryptedUsername);
+
+    const encryptedPassword: string = encryptData('secret_sauce');
     console.log(encryptedPassword);
-    
-    
+
+
     const decryptUsername = decryptData(encryptedUsername)
     const decryptPassword = decryptData(encryptedPassword);
     await page.goto('https://www.saucedemo.com/');
@@ -35,7 +34,7 @@ test('Successful Login', async ({ page }) => {
 })
 
 
-test.only('Second way',async({page})=>{
+test('Second way', { tag: "@Smoke" }, async ({ page }) => {
 
     const decryptUsername = decryptData(process.env.encryptedUsername!);
     const decryptPassword = decryptData(process.env.encryptedPassword!);

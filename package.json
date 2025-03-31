@@ -5,7 +5,12 @@
   "type": "module",
   "scripts": {
     "test:DEV_BASH": "cross-env TEST_ENV=dev npx playwright test",
-    "test:UAT_POWERSHELL": "cross-env $env:Test_ENV='uat';npx playwright test"
+    "test:UAT_POWERSHELL": "cross-env $env:Test_ENV='uat';npx playwright test",
+    "test": "cross-env SECRET_KEY='shaarv70' npx playwright test EncryptionDecryption.spec.ts",
+    "test:RegressionChrome": "cross-env SECRET_KEY='shaarv70' npx playwright test EncryptionDecryption.spec.ts --grep=@Regression --project=chromium",
+    "test:RegressionFirefox":"cross-env SECRET_KEY='shaarv70' npx playwright test EncryptionDecryption.spec.ts --grep=@Regression --project=firefox",
+    "test:SmokeChrome":"cross-env SECRET_KEY='shaarv70' npx playwright test EncryptionDecryption.spec.ts --grep=@Smoke --project=chromium",
+    "test:SmokeFirefox":"cross-env SECRET_KEY='shaarv70' npx playwright test EncryptionDecryption.spec.ts --grep=@Smoke --project=firefox"
   },
   "keywords": [],
   "author": "",
