@@ -13,7 +13,9 @@ ADD runner.sh runner.sh
 COPY . .
 
 # Set permissions for the script
+RUN dos2unix runner.sh
 RUN chmod +x runner.sh
+
 
 # Set entrypoint
 ENTRYPOINT ["/bin/bash","/app/runner.sh"]
