@@ -65,11 +65,11 @@ export default defineConfig({
   reporter: [['line'], ['html', { open: "never" }], ["ortoni-report", reportConfig]],
 
   //Timeout for each test in milliseconds. Defaults to 30 seconds.We can configure on our own
-  timeout: 1000,
+  timeout: 100000,
 
   //this is assertion timeout, by default is 5000ms, this  also we can configure
   expect: {
-    timeout: 400,
+    timeout: 10000,
     // toHaveScreenshot:{
     //   maxDiffPixels:20,
     //   maxDiffPixelRatio:0.1   -- these are snapshpts properties
