@@ -47,7 +47,7 @@ pipeline {
 
                 // Check for Playwright test failures using .last-run.json
                 script {
-                    def lastRunFile = '/app/test-results/.last-run.json'
+                    def lastRunFile = './test-results/.last-run.json'
                     def failedTestFound = fileExists(lastRunFile)
                     if (failedTestFound) {
                         def lastRunJson = readJSON file: lastRunFile
@@ -65,7 +65,7 @@ pipeline {
     post {
         always {
             // Archive both index.html and report.html as artifacts
-            archiveArtifacts artifacts: "/app/playwright-report/index.html, /app//playwright-report/report.html", followSymlinks: false
+            archiveArtifacts artifacts: "./playwright-report/index.html, ./playwright-report/report.html", followSymlinks: false
 
             // Cleanup
             bat "docker-compose down --rmi all --volumes --remove-orphans"
