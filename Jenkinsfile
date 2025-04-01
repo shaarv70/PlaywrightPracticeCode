@@ -47,7 +47,7 @@ pipeline {
 
                 // Check for Playwright test failures using .last-run.json
                 script {
-                    def lastRunFile = './test-results/.last-run.json'
+                    def lastRunFile = 'test-results/.last-run.json'
                     if (fileExists(lastRunFile)) {
                         def lastRunJson = readJSON file: lastRunFile
                         if (lastRunJson.status == 'failed' || lastRunJson.failedTests?.size() > 0) {
@@ -64,7 +64,7 @@ pipeline {
     post {
         always {
             // Archive both index.html and report.html as artifacts
-            archiveArtifacts artifacts: "/playwright-report/index.html, /playwright-report/report.html", followSymlinks: false
+            archiveArtifacts artifacts: "playwright-report/index.html, playwright-report/report.html", followSymlinks: false
 
             // Cleanup
             bat "docker-compose down --rmi all --volumes --remove-orphans"
@@ -85,7 +85,7 @@ pipeline {
                     <p>Check the details: ${env.BUILD_URL}</p>
                 """,
                 mimeType: 'text/html',
-                attachmentsPattern: "/playwright-report/index.html,/playwright-report/report.html",
+                attachmentsPattern: "playwright-report/index.html,playwright-report/report.html",
                 replyTo: 'arvindsharma50480@gmail.com',
                 from: 'arvindsharma50480@gmail.com'
             )
@@ -103,7 +103,7 @@ pipeline {
                     <p>Check the details: ${env.BUILD_URL}</p>
                 """,
                 mimeType: 'text/html',
-                attachmentsPattern: "/playwright-report/index.html, /playwright-report/report.html",
+                attachmentsPattern: "playwright-report/index.html, playwright-report/report.html",
                 replyTo: 'arvindsharma50480@gmail.com',
                 from: 'arvindsharma50480@gmail.com'
             )
