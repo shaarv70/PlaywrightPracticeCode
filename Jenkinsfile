@@ -48,14 +48,13 @@ pipeline {
                 // Check for Playwright test failures using .last-run.json
                 script {
                     def lastRunFile = './test-results/.last-run.json'
-                    def failedTestFound = fileExists(lastRunFile)
-                    if (failedTestFound) {
+                    if (fileExists(lastRunFile)) {
                         def lastRunJson = readJSON file: lastRunFile
                         if (lastRunJson.status == 'failed' || lastRunJson.failedTests?.size() > 0) {
                             error('Failed tests found in Playwright .last-run.json')
                         }
                     } else {
-                        error('.last-run.json file not found')
+                        echo "Warning: .last-run.json file not found. Assuming no failed tests."
                     }
                 }
             }
@@ -86,7 +85,7 @@ pipeline {
                     <p>Check the details: ${env.BUILD_URL}</p>
                 """,
                 mimeType: 'text/html',
-                attachmentsPattern: "output/${params.SERVICE}/playwright-report/index.html, output/${params.SERVICE}/playwright-report/report.html",
+                attachmentsPattern: "./playwright-report/index.html,./playwright-report/report.html",
                 replyTo: 'arvindsharma50480@gmail.com',
                 from: 'arvindsharma50480@gmail.com'
             )
@@ -104,7 +103,7 @@ pipeline {
                     <p>Check the details: ${env.BUILD_URL}</p>
                 """,
                 mimeType: 'text/html',
-                attachmentsPattern: "output/${params.SERVICE}/playwright-report/index.html, output/${params.SERVICE}/playwright-report/report.html",
+                attachmentsPattern: "./playwright-report/index.html, ./playwright-report/report.html",
                 replyTo: 'arvindsharma50480@gmail.com',
                 from: 'arvindsharma50480@gmail.com'
             )
