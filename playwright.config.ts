@@ -88,7 +88,7 @@ export default defineConfig({
     testIdAttribute: "data-test",
     screenshot: 'only-on-failure',
     video:"retain-on-failure",
-    headless: false,  //  by default this is true,
+    headless: true,  //  by default this is true,
     //storageState:'./auth/auth.json'   
   },
 
@@ -106,9 +106,9 @@ export default defineConfig({
     {
       name: 'chromium',
       use: {
-        channel:"chrome",
-        video: 'retain-on-failure', 
-      },
+        ...devices['Desktop Chrome'],
+         video: 'retain-on-failure', 
+      }
     },
        
         //  storageState:'./auth/auth.json' //-- this is another way for saving authentication state with project specfic
