@@ -4,7 +4,7 @@ pipeline {
     environment {
         COMPOSE_HTTP_TIMEOUT = 300
         DOCKER_CLI_TIMEOUT = 300  // Optional but recommended
-        EMAIL_RECIPIENTS = 'sharmaarvindsharma935@gmail.com'
+        EMAIL_RECIPIENTS = 'arvindsharma50480@gmail.com'
     }
 
     parameters {
