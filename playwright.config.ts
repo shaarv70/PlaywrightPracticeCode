@@ -54,7 +54,7 @@ export default defineConfig({
   /* Retry on CI only, since we are using in way of ternary operator like if we have pipeline then retry the failed test as 2 times if we 
   dont have the ppiepline whch means the test  arerunning locally then do not retry, although we can change the retry coount for locally also
   and also like this "retries: 2"*/
-  retries: process.env.CI ? 1 : 1,
+  retries: process.env.CI ? 1 : 0,
   /* Opt out of parallel tests on CI. 
   So workers are basically used for executing the test, if we want to run the test parallely then we can use the as many workers we want */
   workers: process.env.CI ? 1 : 2,
@@ -62,7 +62,7 @@ export default defineConfig({
   //reporter: [['html', { open: 'always', outputfolder: './retryfolder' }]],    //here we will be sending the tuple
   //reporter:process.env.CI?"github":'list', // here we can use inbuilt github actions reporter
   //reporter:[['dot'],['line'],['html',{open:'on-failure'}]], // multiple reporter
-  reporter: [['line'], ['html', { open: "never" }], ["ortoni-report", reportConfig]],
+  reporter: [['line', { open: "never" }], ['html', { open: "never" }], ["ortoni-report", reportConfig]],
 
   //Timeout for each test in milliseconds. Defaults to 30 seconds.We can configure on our own
   timeout: 100000,
@@ -87,9 +87,8 @@ export default defineConfig({
     trace: 'retain-on-failure',
     testIdAttribute: "data-test",
     screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
-
-    headless: true,  //  by default this is true,
+    video:"retain-on-failure",
+    headless: false,  //  by default this is true,
     //storageState:'./auth/auth.json'   
   },
 
@@ -105,14 +104,16 @@ export default defineConfig({
 
     // },
     {
-      name: 'chromium', //project name
-      // dependencies:['setup'], //--first it will execute the project having name as setup
+      name: 'chromium',
       use: {
-        ...devices['Desktop Chrome'],
+        channel:"chrome",
+        video: 'retain-on-failure', 
+      },
+    },
+       
         //  storageState:'./auth/auth.json' //-- this is another way for saving authentication state with project specfic
         //headless:false  -- we can also use this in project specific  
-      }, // this use is specefic related to project settigs
-    },
+    // this use is specefic related to project settigs
 
     {
       name: 'firefox',
