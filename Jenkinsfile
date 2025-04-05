@@ -42,7 +42,7 @@ pipeline {
                 script {
                     def service = params.SERVICE
                     bat """
-                        docker-compose up --scale ${service}=1
+                         docker-compose up --scale ${service}=1
                     """
                 }
 
@@ -57,15 +57,18 @@ pipeline {
                     } else {
                         echo "Warning: .last-run.json file not found. Assuming no failed tests."
                     }
+
+                    sleep(time: 10, unit: 'SECONDS')
                 }
             }
         }
+        
     }
 
     post {
         always {
             // Archive both index.html and report.html as artifacts
-            archiveArtifacts artifacts: "playwright-report/index.html, playwright-report/report.html", followSymlinks: false
+            archiveArtifacts artifacts: "playwright-report/index.html, playwright-report/report.html,test-results/**/*", followSymlinks: false
 
             // Cleanup
             bat "docker-compose down --rmi all --volumes --remove-orphans"

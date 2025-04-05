@@ -1,6 +1,8 @@
 services:
   RegressionChrome:
     image: shaarv70/playwright
+    environment:
+      - FORCE_COLOR=0
     command: [ "test:RegressionChrome" ]
     deploy:
       replicas: 0
@@ -10,6 +12,8 @@ services:
 
   SmokeChrome:
     image: shaarv70/playwright
+    environment:
+      - FORCE_COLOR=0
     command: [ "test:SmokeChrome" ]
     deploy:
       replicas: 0
@@ -19,6 +23,8 @@ services:
 
   RegressionFirefox:
     image: shaarv70/playwright
+    environment:
+      - FORCE_COLOR=0
     command: [ "test:RegressionFirefox" ]
     deploy:
       replicas: 0
@@ -27,6 +33,8 @@ services:
       - ./test-results:/app/test-results
   SmokeFirefox:
     image: shaarv70/playwright
+    environment:
+      - FORCE_COLOR=0
     command: [ "test:SmokeFirefox" ]
     deploy:
       replicas: 0
