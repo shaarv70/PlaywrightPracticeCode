@@ -13,6 +13,12 @@ ADD runner.sh runner.sh
 # Copy the test files
 COPY . .
 
+
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
+
+
+
 # Set permissions for the script
 RUN dos2unix runner.sh
 RUN chmod +x runner.sh
