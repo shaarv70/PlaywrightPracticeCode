@@ -5,6 +5,7 @@ pipeline {
         COMPOSE_HTTP_TIMEOUT = 300
         DOCKER_CLI_TIMEOUT = 300  // Optional but recommended
         EMAIL_RECIPIENTS = 'arvindsharma50480@gmail.com'
+        FORCE_COLOR = '0'   // ⬅️ This disables colored output
     }
 
     parameters {

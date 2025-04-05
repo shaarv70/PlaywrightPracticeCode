@@ -65,7 +65,7 @@ export default defineConfig({
   reporter: [['line', { open: "never" }], ['html', { open: "never" }], ["ortoni-report", reportConfig]],
 
   //Timeout for each test in milliseconds. Defaults to 30 seconds.We can configure on our own
-  timeout: 100000,
+  timeout: 90000,
 
   //this is assertion timeout, by default is 5000ms, this  also we can configure
   expect: {
