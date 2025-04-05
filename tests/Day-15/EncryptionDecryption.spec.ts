@@ -45,7 +45,7 @@ test('Second way', { tag: "@Smoke" }, async ({ page }) => {
     await page.locator('[data-test="username"]').fill(decryptUsername);
     await page.locator('[data-test="password"]').fill(decryptPassword);
     await page.locator('[data-test="login-button"]').waitFor({state:"visible"}).then(()=>{
-        page.locator('[data-test="login-button"]').click();
+        page.locator('[data-test="login-butto"]').click();
 
     });
     await expect(page.locator('[data-test="shopping-cart-link"]')).toBeVisible();
