@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 import * as dotenv from 'dotenv';
 import { OrtoniReportConfig } from 'ortoni-report';
-import path from 'path';
+import * as path from 'path';
 
 /**
  * Read environment variables from file.

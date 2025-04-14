@@ -1,4 +1,4 @@
-import CryptoJS from "crypto-js";
+import * as CryptoJS from "crypto-js";
 
 const secret_key=process.env.SECRET_KEY?process.env.SECRET_KEY:"";
 
